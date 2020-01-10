@@ -4,7 +4,7 @@
 
 Name:           %{gstreamer}-plugins-base
 Version:        %{gstreamer_version}
-Release:        10%{?dist}
+Release:        4%{?dist}
 Summary:        GStreamer streaming media framework base plug-ins
 
 Group:          Applications/Multimedia
@@ -40,6 +40,7 @@ Obsoletes:      gstreamer-plugins
 
 # documentation
 BuildRequires:  gtk-doc >= 1.3
+BuildRequires:  PyXML
 
 Patch0: 0001-missing-plugins-Remove-the-mpegaudioversion-field.patch
 
@@ -82,9 +83,6 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man1/gst-visualise*
 
 %find_lang gst-plugins-base-%{majorminor}
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files -f gst-plugins-base-%{majorminor}.lang
 %defattr(-, root, root)
@@ -327,25 +325,6 @@ library.
 %doc %{_datadir}/gtk-doc/html/gst-plugins-base-plugins-%{majorminor}
 
 %changelog
-* Mon Mar 03 2014 Jan Grulich <jgrulich@redhat.com> - 0.10.36-10
-- Rebuild due to missing -fstack-protector-strong flag
-- Resolves: #1070813
-
-* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.10.36-9
-- Mass rebuild 2014-01-24
-
-* Wed Jan 22 2014 Jan Grulich <jgrulich@redhat.com> - 0.10.36-8
-- Run ldconfig on post and postun (#1056538)
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.10.36-7
-- Mass rebuild 2013-12-27
-
-* Tue Dec 17 2013 Jan Grulich <jgrulich@redhat.com> - 0.10.36-6
-- Fix bogus dates (#1043606)
-
-* Fri Dec 13 2013 Jan Grulich <jgrulich@redhat.com> - 0.10.36-5
-- Remove PyXML as BR (#1041327)
-
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.10.36-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
@@ -427,7 +406,7 @@ library.
 * Tue Apr 27 2010 Benjamin Otte <otte@redhat.com> 0.10.28.3-2
 - Make a noarch devel-docs subpackage to avoid conflicts
 
-* Mon Apr 26 2010 Benjamin Otte <otte@redhat.com> 0.10.28.3-1
+* Thu Apr 26 2010 Benjamin Otte <otte@redhat.com> 0.10.28.3-1
 - Update pre-release
 
 * Thu Apr 15 2010 Benjamin Otte <otte@redhat.com> 0.10.28.2-1
@@ -455,13 +434,13 @@ library.
 * Fri Feb 19 2010 Benjamin Otte <otte@redhat.com> 0.10.26.2-1
 - Update to pre-release
 
-* Thu Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-3
+* Fri Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-3
 - Patch Makefile.in, too and not just Makefile.am
 
-* Thu Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-2
+* Fri Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-2
 - Fix build to conform to new DSO rules
 
-* Thu Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-1
+* Fri Feb 11 2010 Benjamin Otte <otte@redhat.com> 0.10.26-1
 - Update to 0.10.26
 
 * Fri Feb 05 2010 Benjamin Otte <otte@redhat.com> 0.10.25.3-1
